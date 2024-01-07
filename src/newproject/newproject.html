@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="newproject.css" />
+    <title>New Project</title>
+</head>
+<body>
+    <h1>New Project</h1>
+    <div class="mb-3 text-field">
+        <label for="project-name" class="form-label">Project Name*</label>
+        <input type="text" class="form-control" id="project-name" placeholder="Untitled 1">
+    </div>
+
+    <div class="mb-3 text-field">
+        <label for="project-path" class="form-label">Project Path*</label>
+        <input type="text" class="form-control" id="project-path" placeholder="C:\MyProjects\Untitled1">
+    </div>
+
+    <div class="mb-3 text-field">
+        <label for="project-editor" class="form-label">Project Editor*</label>
+        <select class="form-select" aria-label="Choose Editor" id="project-editor">
+            <option selected>Visual Studio Code</option>
+            <option value="1">Sublime</option>
+        </select>
+    </div>
+
+    <div class="mb-3 text-field">
+        <label for="project-description" class="form-label">Project Description</label>
+        <textarea class="form-control" id="project-description" rows="3"></textarea>
+    </div>
+
+    <button class="btn btn-primary lavender-btn create">Create</button>
+
+    <script src="./newproject.js"></script>
+</body>
+</html>

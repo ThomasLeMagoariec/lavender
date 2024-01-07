@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  	background: #393939;
+  	font-family: 'Poppins', sans-serif;
+  	color: #ce81e4;
+}
+
+.lavender-btn {
+	--bs-btn-bg: #ce81e4;
+	--bs-btn-hover-bg: #9248a7;
+	--bs-btn-active-bg: #ce81e4;
+  margin: 5px;
+}
+
+.text-field {
+	max-width: 87%;
+	margin-left: 10px;
+}
+
+.create {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
