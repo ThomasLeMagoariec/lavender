@@ -1,7 +1,3 @@
-# Tauri + Vanilla
+# Lavender
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+A simple project manager written in Rust using Tauri. Lavender is a way to keep track of where your projects are stored and open them in your favorite editor.
