@@ -9,9 +9,16 @@ const description = document.querySelector("#project-description");
 create.addEventListener("click", () => {
     console.log("Create!")
     if (check_fields()) {
-        console.log("true")
-    } else {
-        console.log("false")
+        const project = {
+            "name": name.value,
+            "path": path.value,
+            "editor": editor.value,
+            "description": description.value,
+        }
+        //! bad idead, should probably use better solution
+        //! maybe create local file ? 
+        localStorage.setItem(name.value, JSON.stringify(project))
+        console.log("done!")
     }
 })
 
