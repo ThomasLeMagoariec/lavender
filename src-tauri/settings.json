@@ -1,0 +1,26 @@
+{
+  "New test": {
+    "name": "New test",
+    "editor": "Visual Studio Code",
+    "path": "C:\\Users\\thoma\\Documents\\new_test",
+    "description": "test"
+  },
+  "Siuuuuu": {
+    "name": "Siuuuuu",
+    "editor": "Visual Studio Code",
+    "path": "C:\\Users\\thoma\\Documents\\Siuuuuu",
+    "description": "sdqs"
+  },
+  "hey": {
+    "name": "hey",
+    "editor": "Visual Studio Code",
+    "path": "C:\\Users\\thoma\\Documents\\hey",
+    "description": "test"
+  },
+  "test": {
+    "name": "test",
+    "editor": "Visual Studio Code",
+    "path": "C:\\Users\\thoma\\Documents\\test",
+    "description": "ffsdf"
+  }
+}
