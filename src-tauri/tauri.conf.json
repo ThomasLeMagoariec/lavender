@@ -7,7 +7,7 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "lavender",
+    "productName": "Lavender",
     "version": "0.0.0"
   },
   "tauri": {
