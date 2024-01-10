@@ -1,9 +1,10 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use serde::{Serialize, Deserialize};
+use serde::{Serialize, Deserialize, de};
 use tauri::{AppHandle, WindowBuilder, WindowUrl};
-use std::{path::{Path, self}, fs::{self, OpenOptions, File}, collections::HashMap, io::{Write, self, Read}};
+use std::{path::{Path, self}, fs::{self, OpenOptions, File}, collections::HashMap, io::{Write, self, Read}, fmt::format};
+use chrono::{Datelike, Timelike, Utc, Local};
 
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -12,6 +13,10 @@ struct Project {
     editor: String,
     path: String,
     description: String,
+    date_created: String,
+    date_modified: String,
+    time_created: String,
+    time_modified: String,
 }
 
 fn get_state() -> Result<HashMap<String, Project>, io::Error> {
@@ -71,6 +76,7 @@ async fn updateData(key: String, value: Project) -> Result<(), String> {
     };
 
     update_data(&key, value, &mut state);
+    println!("updateData()");
 
     if let Err(err) = save_state(&state) {
         Err(format!("Error saving state: {:?}", err))
@@ -106,15 +112,67 @@ fn check_path(path: String) -> bool {
     path::Path::new(&path).exists()
 }
 
+fn create_dir(dir_path: &str) -> Result<(), std::io::Error> {
+    if !fs::metadata(dir_path).is_ok() {
+        fs::create_dir(dir_path)?;
+        println!("Directory '{}' created successfully", dir_path);
+    } else {
+        println!("Directory '{}' already exists", dir_path);
+    }
+    Ok(())
+}
+
+
+fn create_project(name: String, path: String, description: String) -> Result<(), io::Error> {
+    match create_dir(&path) {
+        Ok(_) => println!("Operation completed successfully"),
+        Err(err) => eprintln!("Error: {}", err),
+    }
+
+    
+    let file = OpenOptions::new()
+        .write(true)
+        .truncate(true)
+        .create(true)
+        .open(path.clone() + "\\README.md")?;
+
+    let mut file = file;
+    file.write_all(format!("# {}\n{}", name, description).as_bytes())?;
+
+    Ok(())
+}
+
 #[tauri::command]
-fn create_project(name: String, path: String, editor: String, description: String) -> bool {
-    std::fs::create_dir(path).unwrap();
-    true
+fn createProject(name: String, path: String, description: String) -> bool {
+    if let Err(_err) = create_project(name, path, description) {
+        false
+    } else {
+        true
+    }
+}
+
+#[tauri::command]
+fn get_time() -> String {
+    let now = Local::now();
+
+    format!("{:02}:{:02}:{:02}", now.hour(), now.minute(), now.second())
+}
+
+#[tauri::command]
+fn get_date() -> String {
+    let now = Local::now();
+
+    format!("{:04}:{:02}:{:02}", now.year(), now.month(), now.day())
 }
 
 fn main() {
+    let now = Local::now();
+    println!("{:02}:{:02}:{:02}", now.hour(), now.minute(), now.second());
+
+    
+
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![open_new_project_window, check_path, create_project, getState, updateData])
+        .invoke_handler(tauri::generate_handler![open_new_project_window, check_path, createProject, getState, updateData, get_date, get_time])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

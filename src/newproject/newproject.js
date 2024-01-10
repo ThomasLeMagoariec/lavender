@@ -7,19 +7,29 @@ const path = document.querySelector("#project-path");
 const editor = document.querySelector("#project-editor");
 const description = document.querySelector("#project-description");
 
-
 create.addEventListener("click", async () => {
     console.log("Create!")
     if (check_fields()) {
         console.log("fields checked")
+
+        var time = await invoke("get_time")
+        var date = await invoke("get_date")
+
         const project = {
             "name": name.value,
             "path": path.value,
             "editor": editor.value,
             "description": description.value,
+            "date_created": date,
+            "date_modified": date,
+            "time_created": time,
+            "time_modified": time
+
         }
 
-        updateData(name.value, project)
+        if (updateData(name.value, project)) {
+            invoke("createProject", {name: name.value, path: path.value, description: description.value})
+        }
     }
 })
 
@@ -35,7 +45,7 @@ function check_fields() {
 
     if (!invoke("check_path", { "path": path.value })) {
         alert("invalid  path my g")
-        return false; //! CHANGE BACK TO FALSE
+        return false;
     }
 
     return true
@@ -55,8 +65,10 @@ async function updateData(key, value) {
     try {
         await invoke('updateData', { key, value });
         console.log('Data updated successfully');
+        return true
     } catch (error) {
         console.error('Error updating data:', error);
+        return false
     }
 }
 

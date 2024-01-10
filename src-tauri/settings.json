@@ -1,26 +1,22 @@
 {
-  "New test": {
-    "name": "New test",
-    "editor": "Visual Studio Code",
-    "path": "C:\\Users\\thoma\\Documents\\new_test",
-    "description": "test"
-  },
-  "Siuuuuu": {
-    "name": "Siuuuuu",
-    "editor": "Visual Studio Code",
-    "path": "C:\\Users\\thoma\\Documents\\Siuuuuu",
-    "description": "sdqs"
-  },
-  "hey": {
-    "name": "hey",
+  "Hey": {
+    "name": "Hey",
     "editor": "Visual Studio Code",
     "path": "C:\\Users\\thoma\\Documents\\hey",
-    "description": "test"
+    "description": "Hello, Hey!",
+    "date_created": "2024:01:10",
+    "date_modified": "2024:01:10",
+    "time_created": "16:17:08",
+    "time_modified": "16:17:08"
   },
   "test": {
     "name": "test",
     "editor": "Visual Studio Code",
     "path": "C:\\Users\\thoma\\Documents\\test",
-    "description": "ffsdf"
+    "description": "testing test",
+    "date_created": "2024:01:10",
+    "date_modified": "2024:01:10",
+    "time_created": "15:31:39",
+    "time_modified": "15:31:39"
   }
 }
